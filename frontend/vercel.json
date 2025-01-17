@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/v1/:path*",
+      "destination": "https://fileconversion-e7w2.onrender.com/api/v1/:path*"
+    }
+  ]
+}
