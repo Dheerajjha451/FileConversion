@@ -4,6 +4,7 @@ import { MdChangeCircle } from "react-icons/md";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useFiles } from "../../Context/files";
+import { toast } from "sonner";
 
 const supportedFormats = {
   image: ["jpeg", "png", "heic", "tiff", "bmp", "gif", "webp"],
@@ -30,6 +31,7 @@ function Home() {
 
     if (unsupportedFiles.length > 0) {
       setError(`Unsupported file types: ${unsupportedFiles.map(file => file.name).join(", ")}`);
+      toast.error(`Unsupported file types: ${unsupportedFiles.map(file => file.name).join(", ")}`);
       return;
     }
 
@@ -57,11 +59,11 @@ function Home() {
 
   const convertToType = async () => {
     if (files.length === 0) {
-      alert("Please select files to convert.");
+      toast.error("Please select files to convert.");
       return;
     }
     if (!type) {
-      alert("Please select a conversion type.");
+      toast.error("Please select a conversion type.");
       return;
     }
 
@@ -97,10 +99,11 @@ function Home() {
       link.remove();
       window.URL.revokeObjectURL(url);
 
+      toast.success("File converted successfully!");
       navigate("/thanks");
     } catch (error) {
       console.error("Error during file conversion:", error);
-      alert("Failed to convert files. Please try again.");
+      toast.error("Failed to convert files. Please try again.");
     } finally {
       setLoading(false);
     }
