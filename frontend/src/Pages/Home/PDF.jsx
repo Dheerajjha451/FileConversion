@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 function PDF() {
   const { files, setFile } = useFiles();
   const [numPages, setNumPages] = useState(null);
-  const [pagesToKeep, setPagesToKeep] = useState([]); 
+  const [pagesToKeep, setPagesToKeep] = useState([]);
   const navigate = useNavigate();
 
   const onDocumentLoadSuccess = ({ numPages }) => {
@@ -41,7 +41,7 @@ function PDF() {
         },
         {
           headers: {
-            "Content-Type": "multipart/form-data", 
+            "Content-Type": "multipart/form-data",
           },
           responseType: "blob",
         }
@@ -98,7 +98,7 @@ function PDF() {
                       renderTextLayer={false}
                       renderAnnotationLayer={false}
                       className="mx-auto"
-                      width={Math.min(window.innerWidth - 40, 800)} 
+                      width={Math.min(window.innerWidth - 40, 800)}
                     />
                     <div className="flex justify-between items-center w-full mt-2 px-4">
                       <button

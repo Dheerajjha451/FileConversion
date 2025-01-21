@@ -107,21 +107,21 @@ function Home() {
   };
 
   return (
-    <main className="flex items-center justify-center min-h-screen bg-cream">
-      <section className="bg-white shadow-xl rounded-lg p-6 w-11/12 sm:w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12">
+    <main className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
+      <section className="bg-white shadow-2xl rounded-lg p-8 w-11/12 sm:w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12">
         <header>
-          <h1 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 text-gray-700 text-center">
+          <h1 className="text-2xl font-bold mb-6 text-gray-800 text-center">
             Upload Your File
           </h1>
         </header>
         
-        <h3 className="text-xl text-gray-600 text-center sm:text-left">Format:</h3>
-        <div className="flex flex-col sm:flex-row items-center mt-4 sm:ml-32 md:ml-0">
+        <h3 className="text-lg text-gray-700 text-center mb-4">Select Format:</h3>
+        <div className="flex flex-col sm:flex-row items-center justify-center mb-6">
           <label
             htmlFor="uploadFile1"
-            className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-md shadow hover:bg-gray-200 cursor-pointer transition"
+            className="flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-md shadow hover:bg-blue-200 cursor-pointer transition"
           >
-            <IoIosAddCircle className="text-xl text-gray-500" /> Choose File
+            <IoIosAddCircle className="text-2xl" /> Choose File
             <input
               type="file"
               id="uploadFile1"
@@ -130,9 +130,9 @@ function Home() {
               className="hidden"
             />
           </label>
-          <p className="my-2 sm:my-0 sm:mx-4">to</p>
+          <p className="my-2 sm:my-0 sm:mx-4 text-white">to</p>
           <select
-            className="border border-gray-300 text-sm rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="border border-gray-300 text-sm rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             onChange={handleTypeChange}
           >
             <option value="">Select Format</option>
@@ -185,7 +185,7 @@ function Home() {
 
         <button
           onClick={convertToType}
-          className={`flex items-center justify-center mt-6 mx-auto bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-lg transition ${
+          className={`flex items-center justify-center mt-6 mx-auto bg-blue-500 hover:bg-blue-600 text-white text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-lg transition ${
             loading ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={loading}
