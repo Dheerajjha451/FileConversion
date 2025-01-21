@@ -3,10 +3,12 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { FilesProvider } from './Context/files.jsx'
+import { Toaster } from "sonner"
 
 createRoot(document.getElementById('root')).render(
     <FilesProvider>
         <Analytics/>
         <App />
+        <Toaster position="top-center" expand={true} richColors />
     </FilesProvider>
 )
