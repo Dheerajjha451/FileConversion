@@ -9,10 +9,6 @@ function ThankYouPage() {
 
     return (
         <div className="relative flex flex-col items-center justify-center min-h-screen bg-cream text-center overflow-hidden">
-            <div className="absolute top-10 left-10 w-16 h-16 bg-white rounded-2xl shadow-lg transform rotate-45"></div>
-            <div className="absolute top-20 right-20 w-20 h-20 bg-pink-500 rounded-lg shadow-lg"></div>
-            <div className="absolute bottom-20 left-20 w-20 h-20 bg-purple-500 rounded-full shadow-lg"></div>
-            <div className="absolute bottom-10 right-10 w-16 h-16 bg-white rounded-2xl shadow-lg transform rotate-45"></div>
 
             <div className="z-10">
                 <h1 className="text-orange-500 text-4xl sm:text-5xl font-bold mb-6">THANK YOU</h1>
