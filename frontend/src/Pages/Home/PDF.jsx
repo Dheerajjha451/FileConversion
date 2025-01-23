@@ -5,11 +5,13 @@ import { useFiles } from "../../Context/files";
 import { MdChangeCircle, MdDelete } from "react-icons/md";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from '@heroui/button';
 
 function PDF() {
   const { files, setFile } = useFiles();
   const [numPages, setNumPages] = useState(null);
   const [pagesToKeep, setPagesToKeep] = useState([]); 
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
 
   const onDocumentLoadSuccess = ({ numPages }) => {
@@ -31,6 +33,7 @@ function PDF() {
   };
 
   const handleEditPage = () => {
+    setLoading(true); // Set loading to true when conversion starts
     axios
       .post(
         "api/v1/formatter/fetch",
@@ -71,6 +74,9 @@ function PDF() {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false when conversion ends
       });
   };
 
@@ -101,7 +107,7 @@ function PDF() {
                       width={Math.min(window.innerWidth - 40, 800)} 
                     />
                     <div className="flex justify-between items-center w-full mt-2 px-4">
-                      <button
+                      <Button
                         onClick={() => togglePageKeep(pageIndex)}
                         className={`px-4 py-2 text-white rounded-md ${
                           pagesToKeep.includes(pageIndex + 1)
@@ -110,19 +116,20 @@ function PDF() {
                         }`}
                       >
                         {pagesToKeep.includes(pageIndex + 1) ? "Remove" : "Keep"}
-                      </button>
+                      </Button>
                       <span className="text-sm text-gray-600">Page {pageIndex + 1}</span>
                     </div>
                   </div>
                 ))}
               </Document>
-              <button
-                onClick={() => removeFile(fileIndex)}
-                className="mt-4 bg-red-500 hover:bg-red-600 text-white rounded-md px-4 py-2 flex items-center gap-2"
+              <Button
+                onPress={() => removeFile(fileIndex)}
+                className="mt-4"
+                color="danger"
               >
                 <MdDelete />
                 Remove File
-              </button>
+              </Button>
             </div>
           ))}
       </div>
@@ -133,13 +140,14 @@ function PDF() {
           Select the pages you want to keep or remove from the document.
         </p>
         <div className="mt-auto mb-4">
-          <button
-            onClick={handleEditPage}
-            className="text-xl font-semibold flex gap-2 items-center px-6 py-2 bg-orange-600 hover:bg-orange-600 rounded-md text-white shadow-lg transition-transform transform hover:scale-105"
+          <Button
+            onPress={handleEditPage}
+            isLoading={loading}
+            color="primary"
           >
-            <MdChangeCircle />
-            <span>Create</span>
-          </button>
+            {!loading && <MdChangeCircle />} {/* Show icon when not loading */}
+            <span>{loading ? "Processing..." : "Create"}</span> {/* Show loading text */}
+          </Button>
         </div>
       </div>
     </div>
