@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useFiles } from "../../Context/files";
 import { toast } from "sonner";
+import { Button } from '@heroui/button';
 
 const supportedFormats = {
   image: ["jpeg", "png", "heic", "tiff", "bmp", "gif", "webp"],
@@ -174,28 +175,26 @@ function Home() {
                   className="flex items-center justify-between bg-gray-100 p-3 rounded-md shadow"
                 >
                   <span className="text-sm text-gray-700">{file.name}</span>
-                  <button
-                    onClick={() => removeFile(index)}
-                    className="text-red-500 hover:text-red-600"
-                  >
+                  <Button
+                    onPress={() => removeFile(index)} isIconOnly color="danger">
                     <IoMdCloseCircle className="text-lg" />
-                  </button>
+                  </Button>
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        <button
-          onClick={convertToType}
+        <Button
+          onPress={convertToType}
           className={`flex items-center justify-center mt-6 mx-auto bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-lg transition ${
             loading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          disabled={loading}
+            }`}
+          isLoading={loading}
         >
-          <MdChangeCircle className="mr-2 text-lg" />
+          {!loading ? <MdChangeCircle className="text-xl mr-2" /> : null}
           {loading ? "Processing..." : "Convert"}
-        </button>
+        </Button>
       </section>
     </main>
   );

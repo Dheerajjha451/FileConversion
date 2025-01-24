@@ -11,9 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroui/button": "^2.2.10",
+    "@heroui/react": "^2.6.14",
     "@vercel/analytics": "^1.4.1",
     "axios": "^1.7.5",
     "dotenv": "^16.4.7",
+    "framer-motion": "^12.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@heroui/button';
 
 function ThankYouPage() {
     const navigate = useNavigate();
@@ -12,12 +13,12 @@ function ThankYouPage() {
 
             <div className="z-10">
                 <h1 className="text-orange-500 text-4xl sm:text-5xl font-bold mb-6">THANK YOU</h1>
-                <button
-                    onClick={onConvertAnother}
-                    className="bg-orange-500 hover:bg-orange-600 text-white text-base sm:text-lg font-medium py-3 px-6 rounded-full shadow-lg transition-all duration-200 transform hover:scale-105"
+                <Button
+                    onPress={onConvertAnother}
+                    color='primary'
                 >
                     Convert New File
-                </button>
+                </Button>
             </div>
         </div>
     );
