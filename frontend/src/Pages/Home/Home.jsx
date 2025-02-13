@@ -24,19 +24,42 @@ function Home() {
 
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
+    // File Size Limit - 100 Megabytes
+    const maxFileSize = 100 * 1024 * 1024; 
+    const largeFiles = [];
+
     const unsupportedFiles = selectedFiles.filter(
-      (file) => !supportedFormats.image.includes(file.type.split("/")[1]) &&
-                !supportedFormats.pdf.includes(file.type.split("/")[1]) &&
-                !supportedFormats.video.includes(file.type.split("/")[1])
+      (file) => {
+        const fileType = file.type.split("/")[1];
+        if (!supportedFormats.image.includes(fileType) &&
+            !supportedFormats.pdf.includes(fileType) &&
+            !supportedFormats.video.includes(fileType)) {
+          return true;
+        }
+        if (file.size > maxFileSize) {
+          largeFiles.push(file.name);
+          return false;
+        }
+        return false;
+      }
     );
 
+    
     if (unsupportedFiles.length > 0) {
       setError(`Unsupported file types: ${unsupportedFiles.map(file => file.name).join(", ")}`);
       toast.error(`Unsupported file types: ${unsupportedFiles.map(file => file.name).join(", ")}`);
       return;
     }
 
-    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+
+
+    if (largeFiles.length > 0) {
+      setError(`File size too large: ${largeFiles.join(", ")}. Maximum allowed size is 100MB.`);
+      toast.error(`File size too large: ${largeFiles.join(", ")}. Maximum allowed size is 100MB.`);
+      return;
+    }
+
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles.filter(file => file.size <= maxFileSize)]);
     setError("");
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
