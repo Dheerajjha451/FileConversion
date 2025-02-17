@@ -209,8 +209,7 @@ function Home() {
           <span> &rarr;</span>
           <span>{type}</span>
         </span>
-
-
+        <span>&nbsp;</span>
                   <Button
                     onPress={() => removeFile(index)} isIconOnly color="danger">
                     <IoMdCloseCircle className="text-lg" />
