@@ -74,6 +74,10 @@ function Home() {
     setType(e.target.value);
   };
 
+  const FileExtension = (fileName) => {
+    return fileName.split('.').pop();
+  };
+
   useEffect(() => {
     if (type === "annotate" && files.length > 0) {
       setFile(files);
@@ -194,10 +198,19 @@ function Home() {
             <ul className="space-y-2">
               {files.map((file, index) => (
                 <li
-                  key={index}
-                  className="flex items-center justify-between bg-gray-100 p-3 rounded-md shadow"
-                >
-                  <span className="text-sm text-gray-700">{file.name}</span>
+                key={index}
+                className="flex flex-col items-center justify-between bg-gray-100 p-3 rounded-md shadow"
+              >
+                 <span className="text-sm text-center">
+          {file.name}
+        </span>
+        <span className="text-sm text-gray-700 flex items-center">
+          <span>{FileExtension(file.name)}</span>
+          <span> &rarr;</span>
+          <span>{type}</span>
+        </span>
+
+
                   <Button
                     onPress={() => removeFile(index)} isIconOnly color="danger">
                     <IoMdCloseCircle className="text-lg" />
