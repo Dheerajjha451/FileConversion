@@ -25,15 +25,15 @@ function Home() {
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     // File Size Limit - 100 Megabytes
-    const maxFileSize = 100 * 1024 * 1024; 
+    const maxFileSize = 100 * 1024 * 1024;
     const largeFiles = [];
 
     const unsupportedFiles = selectedFiles.filter(
       (file) => {
         const fileType = file.type.split("/")[1];
         if (!supportedFormats.image.includes(fileType) &&
-            !supportedFormats.pdf.includes(fileType) &&
-            !supportedFormats.video.includes(fileType)) {
+          !supportedFormats.pdf.includes(fileType) &&
+          !supportedFormats.video.includes(fileType)) {
           return true;
         }
         if (file.size > maxFileSize) {
@@ -44,14 +44,11 @@ function Home() {
       }
     );
 
-    
     if (unsupportedFiles.length > 0) {
       setError(`Unsupported file types: ${unsupportedFiles.map(file => file.name).join(", ")}`);
       toast.error(`Unsupported file types: ${unsupportedFiles.map(file => file.name).join(", ")}`);
       return;
     }
-
-
 
     if (largeFiles.length > 0) {
       setError(`File size too large: ${largeFiles.join(", ")}. Maximum allowed size is 100MB.`);
@@ -72,6 +69,10 @@ function Home() {
 
   const handleTypeChange = (e) => {
     setType(e.target.value);
+  };
+
+  const FileExtension = (fileName) => {
+    return fileName.split('.').pop();
   };
 
   useEffect(() => {
@@ -141,7 +142,7 @@ function Home() {
             Upload Your File
           </h1>
         </header>
-        
+
         <h3 className="text-xl text-gray-600 text-center sm:text-left">Format:</h3>
         <div className="flex flex-col sm:flex-row items-center mt-4 sm:ml-32 md:ml-0">
           <label
@@ -195,13 +196,25 @@ function Home() {
               {files.map((file, index) => (
                 <li
                   key={index}
-                  className="flex items-center justify-between bg-gray-100 p-3 rounded-md shadow"
+                  className="relative flex flex-col items-center justify-between bg-gray-100 p-3 rounded-md shadow"
                 >
-                  <span className="text-sm text-gray-700">{file.name}</span>
                   <Button
-                    onPress={() => removeFile(index)} isIconOnly color="danger">
+                    onPress={() => removeFile(index)}
+                    isIconOnly
+                    color="danger"
+                    className="absolute top-2 right-2"
+                    style={{ width: '25px', height: '25px' }}
+                  >
                     <IoMdCloseCircle className="text-lg" />
                   </Button>
+                  <span className="text-sm text-center">
+                    {file.name}
+                  </span>
+                  <span className="text-sm text-gray-700 flex items-center">
+                    <span>{FileExtension(file.name)}</span>
+                    <span> &rarr;</span>
+                    <span>{type}</span>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -210,8 +223,7 @@ function Home() {
 
         <Button
           onPress={convertToType}
-          className={`flex items-center justify-center mt-6 mx-auto bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-lg transition ${
-            loading ? "opacity-50 cursor-not-allowed" : ""
+          className={`flex items-center justify-center mt-6 mx-auto bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-lg transition ${loading ? "opacity-50 cursor-not-allowed" : ""
             }`}
           isLoading={loading}
         >
