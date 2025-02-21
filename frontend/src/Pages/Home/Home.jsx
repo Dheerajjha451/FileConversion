@@ -28,9 +28,17 @@ function Home() {
     const maxFileSize = 100 * 1024 * 1024;
     const largeFiles = [];
 
+    const MIMEtypes = {
+      "video/mp4": "mp4",
+      "video/x-matroska": "mkv",
+      "video/quicktime": "mov",
+      "video/x-msvideo": "avi",
+    };
+
     const unsupportedFiles = selectedFiles.filter(
       (file) => {
-        const fileType = file.type.split("/")[1];
+        const fileType = MIMEtypes[file.type] || file.type.split("/")[1];
+        console.log(`File: ${file.name}, Extension: ${fileType}`);
         if (!supportedFormats.image.includes(fileType) &&
           !supportedFormats.pdf.includes(fileType) &&
           !supportedFormats.video.includes(fileType)) {
