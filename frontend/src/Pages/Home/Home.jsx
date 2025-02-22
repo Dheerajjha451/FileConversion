@@ -28,9 +28,26 @@ function Home() {
     const maxFileSize = 100 * 1024 * 1024;
     const largeFiles = [];
 
+    const MIMEtypes = {
+      // video
+      "video/mp4": "mp4",
+      "video/x-matroska": "mkv",
+      "video/quicktime": "mov",
+      "video/x-msvideo": "avi",
+
+      // images
+      "image/jpeg": "jpeg",
+      "image/png": "png",
+      "image/heic": "heic",
+      "image/tiff": "tiff",
+      "image/bmp": "bmp",
+      "image/gif": "gif",
+      "image/webp": "webp"
+    };
+
     const unsupportedFiles = selectedFiles.filter(
       (file) => {
-        const fileType = file.type.split("/")[1];
+        const fileType = MIMEtypes[file.type] || file.type.split("/")[1];
         if (!supportedFormats.image.includes(fileType) &&
           !supportedFormats.pdf.includes(fileType) &&
           !supportedFormats.video.includes(fileType)) {
