@@ -219,8 +219,8 @@ function Home() {
                     onPress={() => removeFile(index)}
                     isIconOnly
                     color="danger"
-                    className="absolute top-2 right-2"
-                    style={{ width: '25px', height: '25px' }}
+                    size="sm"
+                    className="absolute top-2 right-2 rounded-full "   
                   >
                     <IoMdCloseCircle className="text-lg" />
                   </Button>
