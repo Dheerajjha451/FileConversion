@@ -175,7 +175,7 @@ function Home() {
               className="hidden"
             />
           </label>
-          <p className="my-2 sm:my-0 sm:mx-4"> to </p>
+          <p className="my-2 sm:my-0 mx-4">to</p>
           <select
             className="border border-gray-300 text-sm rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
             onChange={handleTypeChange}
