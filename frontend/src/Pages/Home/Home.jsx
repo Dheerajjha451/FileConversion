@@ -192,7 +192,7 @@ function Home() {
             </optgroup>
             <optgroup label="PDF">
               <option value="pdf">PDF</option>
-              <option value="annotate">Annotate</option>
+              <option value="annotate">Edit PDF Pages</option>
             </optgroup>
             <optgroup label="Video">
               <option value="mp4">MP4</option>
