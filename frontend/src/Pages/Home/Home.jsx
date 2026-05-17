@@ -160,7 +160,7 @@ function Home() {
           </h1>
         </header>
 
-        <h3 className="text-xl text-gray-600 text-center sm:text-left">Format:</h3>
+        <h3 className="text-xl text-gray-600 text-center sm:text-left">Change Format:</h3>
         <div className="flex flex-col sm:flex-row items-center mt-4 sm:ml-32 md:ml-0">
           <label
             htmlFor="uploadFile1"
