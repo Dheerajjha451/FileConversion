@@ -156,7 +156,7 @@ function Home() {
       <section className="bg-white shadow-xl rounded-lg p-6 w-11/12 sm:w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12">
         <header>
           <h1 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 text-gray-700 text-center">
-            Upload Your File
+            Upload Your Files
           </h1>
         </header>
 
